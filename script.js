@@ -34,7 +34,7 @@ const musicTracks = [
 ];
 
 let trial = 0;
-const totalTrials = 1;
+const totalTrials = 40;
 let results = [];
 let currentSet = [];
 let correctPersonIndex = 0;
