@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Memory Experiment</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="startScreen">
+    <h1>Welcome to the Memory Experiment</h1>
+    <p>You will see 3 faces. Remember the emotion of each person.</p>
+    <p>Then you will see a phrase. Remember what type of phrase it was.</p>
+    <p>Finally, you'll answer two questions: one about a person's emotion and one about the phrase.</p>
+    <button id="startBtn">Start Experiment</button>
+  </div>
+
+  <div id="faceView" style="display:none;">
+    <h2 id="trialCounter">Trial</h2>
+    <div id="faces" class="row"></div>
+  </div>
+
+  <div id="phraseView" style="display:none;">
+    <h2>Memorize this phrase</h2>
+    <p id="phraseText"></p>
+  </div>
+
+  <div id="questionView" style="display:none;">
+    <h3 id="faceQuestion"></h3>
+    <div id="emotionButtons">
+      <button onclick="selectEmotion('Happy')">Happy</button>
+      <button onclick="selectEmotion('Angry')">Angry</button>
+      <button onclick="selectEmotion('Neutral')">Neutral</button>
+    </div>
+    <h3>What type of phrase was it?</h3>
+    <div id="phraseButtons">
+      <button onclick="selectPhraseType('Statement')">Statement</button>
+      <button onclick="selectPhraseType('Command')">Command</button>
+      <button onclick="selectPhraseType('Question')">Question</button>
+    </div>
+  </div>
+
+  <div id="resultView" style="display:none;">
+    <h2>Experiment Complete</h2>
+    <p id="resultSummary"></p>
+    <button onclick="downloadResults()">Download Results</button>
+  </div>
+
+  <audio id="bgMusic" autoplay loop></audio>
+  <script src="script.js"></script>
+</body>
+</html>
