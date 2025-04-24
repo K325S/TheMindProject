@@ -172,7 +172,7 @@ for (let i = 0; i < 3; i++) {
 
 
 let trial = 0;
-const totalTrials = 1;
+const totalTrials = 30;
 let results = [];
 let currentSet = [];
 let correctPersonIndex = 0;
