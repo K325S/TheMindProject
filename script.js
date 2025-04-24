@@ -1,4 +1,3 @@
-
 document.getElementById("startBtn").onclick = () => {
   document.getElementById("startScreen").style.display = "none";
   playMusic(0);
@@ -21,20 +20,153 @@ const faces = {
 };
 
 const phrases = [
-  { text: "Please close the door.", type: "Command" },
-  { text: "What time is it?", type: "Question" },
-  { text: "The cat is sleeping.", type: "Statement" }
+  {
+    "text": "Where did you park the car?",
+    "type": "Question"
+  },
+  {
+    "text": "The meeting starts at ten.",
+    "type": "Statement"
+  },
+  {
+    "text": "Switch off the lights.",
+    "type": "Command"
+  },
+  {
+    "text": "Return the library books tomorrow.",
+    "type": "Command"
+  },
+  {
+    "text": "Is the report finished yet?",
+    "type": "Question"
+  },
+  {
+    "text": "The flowers need water.",
+    "type": "Statement"
+  },
+  {
+    "text": "The airport is thirty minutes away.",
+    "type": "Statement"
+  },
+  {
+    "text": "Close your laptop.",
+    "type": "Command"
+  },
+  {
+    "text": "Why is the traffic so heavy?",
+    "type": "Question"
+  },
+  {
+    "text": "Can you hear the music?",
+    "type": "Question"
+  },
+  {
+    "text": "Save the file before exiting.",
+    "type": "Command"
+  },
+  {
+    "text": "The sky turned orange at sunset.",
+    "type": "Statement"
+  },
+  {
+    "text": "The tickets sold out quickly.",
+    "type": "Statement"
+  },
+  {
+    "text": "Call me when you arrive.",
+    "type": "Command"
+  },
+  {
+    "text": "Who left the door open?",
+    "type": "Question"
+  },
+  {
+    "text": "Take a deep breath.",
+    "type": "Command"
+  },
+  {
+    "text": "The coffee tastes bitter.",
+    "type": "Statement"
+  },
+  {
+    "text": "Where is the nearest metro station?",
+    "type": "Question"
+  },
+  {
+    "text": "How old is this building?",
+    "type": "Question"
+  },
+  {
+    "text": "The cat is sleeping on the couch.",
+    "type": "Statement"
+  },
+  {
+    "text": "Please pass the salt.",
+    "type": "Command"
+  },
+  {
+    "text": "Turn down the volume.",
+    "type": "Command"
+  },
+  {
+    "text": "The lecture lasted two hours.",
+    "type": "Statement"
+  },
+  {
+    "text": "Did you lock the front gate?",
+    "type": "Question"
+  },
+  {
+    "text": "The train departs at noon.",
+    "type": "Statement"
+  },
+  {
+    "text": "Why are the lights flickering?",
+    "type": "Question"
+  },
+  {
+    "text": "Submit your assignment online.",
+    "type": "Command"
+  },
+  {
+    "text": "When does the store open?",
+    "type": "Question"
+  },
+  {
+    "text": "The lake was frozen last winter.",
+    "type": "Statement"
+  },
+  {
+    "text": "Check the oil level in the car.",
+    "type": "Command"
+  }
 ];
 
-const musicTracks = [
+
+const musicFolder = [
   "assets/music/jazz-funk-groove-instrumental-222618.mp3",
   "assets/music/gentle-instrumental-1-322812.mp3",
   "assets/music/rock-intro-instrumental-2-318682.mp3",
   "assets/music/gorila-315977.mp3"
 ];
 
+const lyricalFolder = [
+  "assets/lyrical/なとり - Overdose.mp3",
+  "assets/lyrical/YOASOBI夜に駆ける Official Music Video.mp3",
+  "assets/lyrical/Lady Gaga - Abracadabra (Official Music Video).mp3",
+  "assets/lyrical/Adoうっせぇわ.mp3",
+  "assets/lyrical/The Rolling Stones - Paint It, Black (Official Lyric Video).mp3",
+  "assets/lyrical/Taylor Swift - Shake It Off.mp3"
+];
+
+// Randomly select 3 from each
+const selectedInstrumentals = shuffleArray(musicFolder).slice(0, 3);
+const selectedLyrics = shuffleArray(lyricalFolder).slice(0, 3);
+const musicTracks = shuffleArray([...selectedInstrumentals, ...selectedLyrics]);
+
+
 let trial = 0;
-const totalTrials = 40;
+const totalTrials = 30;
 let results = [];
 let currentSet = [];
 let correctPersonIndex = 0;
@@ -73,7 +205,7 @@ function showFaceView() {
   });
 
   correctPersonIndex = Math.floor(Math.random() * 3);
-  setTimeout(showPhraseView, 4000);
+  setTimeout(showPhraseView, 6000);
 }
 
 function showPhraseView() {
@@ -81,7 +213,7 @@ function showPhraseView() {
   document.getElementById("phraseView").style.display = "block";
   selectedPhrase = getRandomFrom(phrases);
   document.getElementById("phraseText").textContent = selectedPhrase.text;
-  setTimeout(showQuestionView, 4000);
+  setTimeout(showQuestionView, 6000);
 }
 
 function showQuestionView() {
