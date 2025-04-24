@@ -24,13 +24,16 @@
     <p id="phraseText"></p>
   </div>
 
-  <div id="questionView" style="display:none;">
+  <div id="faceQuestionView" style="display:none;">
     <h3 id="faceQuestion"></h3>
     <div id="emotionButtons">
       <button onclick="selectEmotion('Happy')">Happy</button>
       <button onclick="selectEmotion('Angry')">Angry</button>
       <button onclick="selectEmotion('Neutral')">Neutral</button>
     </div>
+  </div>
+
+  <div id="phraseQuestionView" style="display:none;">
     <h3>What type of phrase was it?</h3>
     <div id="phraseButtons">
       <button onclick="selectPhraseType('Statement')">Statement</button>
@@ -46,6 +49,6 @@
   </div>
 
   <audio id="bgMusic" autoplay loop></audio>
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
