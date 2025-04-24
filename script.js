@@ -1,4 +1,3 @@
-
 document.getElementById("startBtn").onclick = () => {
   document.getElementById("startScreen").style.display = "none";
   playMusic(0);
@@ -173,7 +172,7 @@ for (let i = 0; i < 3; i++) {
 
 
 let trial = 0;
-const totalTrials = 30;
+const totalTrials = 1;
 let results = [];
 let currentSet = [];
 let correctPersonIndex = 0;
@@ -181,10 +180,13 @@ let selectedPhrase = {};
 let faceAnswered = false;
 let phraseAnswered = false;
 let bgMusic = document.getElementById("bgMusic");
+let currentMusicType = "";
 
 function playMusic(index) {
-  bgMusic.src = musicTracks[index % musicTracks.length];
+  const track = musicTracks[index % musicTracks.length];
+  bgMusic.src = track;
   bgMusic.play();
+  currentMusicType = selectedInstrumentals.includes(track) ? "Instrumental" : "Lyrical";
 }
 
 function showFaceView() {
@@ -192,7 +194,7 @@ function showFaceView() {
   if (trial % 5 === 0) playMusic(trial / 5);
   document.getElementById("faceView").style.display = "block";
   document.getElementById("phraseView").style.display = "none";
-  document.getElementById("questionView").style.display = "none";
+  document.getElementById("faceQuestionView").style.display = "none";
 
   document.getElementById("trialCounter").textContent = `Trial ${trial + 1} of ${totalTrials}`;
 
@@ -223,24 +225,35 @@ function showPhraseView() {
   setTimeout(showQuestionView, 4000);
 }
 
+
+function showPhraseQuestion() {
+  document.getElementById("faceQuestionView").style.display = "none";
+  document.getElementById("phraseQuestionView").style.display = "block";
+  window.phraseQuestionStartTime = performance.now();
+  window.faceQuestionStartTime = performance.now();
+}
+
 function showQuestionView() {
+  document.getElementById("phraseQuestionView").style.display = "none";
   document.getElementById("phraseView").style.display = "none";
-  document.getElementById("questionView").style.display = "block";
+  document.getElementById("faceQuestionView").style.display = "block";
   document.getElementById("faceQuestion").textContent =
     "What was the emotion of Person " + (correctPersonIndex + 1) + "?";
   faceAnswered = false;
   phraseAnswered = false;
-  window.questionStartTime = performance.now();
+  phraseAnswered = false;
+  window.faceQuestionStartTime = performance.now();
 }
 
 function selectEmotion(emotion) {
-  results[trial] = { ...results[trial], face: emotion };
+  const faceReactionTime = performance.now() - window.faceQuestionStartTime;
+  results[trial] = { ...results[trial], face: emotion, faceReactionTimeMs: Math.round(faceReactionTime) };
   faceAnswered = true;
-  checkBothAnswers();
+  showPhraseQuestion();
 }
 
 function selectPhraseType(type) {
-  const reactionTime = performance.now() - window.questionStartTime;
+  const reactionTime = performance.now() - window.phraseQuestionStartTime;
   results[trial] = {
     ...results[trial],
     trial: trial + 1,
@@ -251,16 +264,19 @@ function selectPhraseType(type) {
     correctPhrase: selectedPhrase.type,
     selectedPhrase: type,
     phraseCorrect: selectedPhrase.type === type,
-    reactionTimeMs: Math.round(reactionTime)
+    phraseReactionTimeMs: Math.round(reactionTime),
+    musicType: currentMusicType
   };
   phraseAnswered = true;
-  checkBothAnswers();
+  trial++;
+  document.getElementById('phraseQuestionView').style.display = 'none';
+  showFaceView();
 }
 
 function checkBothAnswers() {
   if (faceAnswered && phraseAnswered) {
     trial++;
-    document.getElementById("questionView").style.display = "none";
+    document.getElementById("faceQuestionView").style.display = "none";
     showFaceView();
   }
 }
@@ -268,7 +284,7 @@ function checkBothAnswers() {
 function endExperiment() {
   document.getElementById("faceView").style.display = "none";
   document.getElementById("phraseView").style.display = "none";
-  document.getElementById("questionView").style.display = "none";
+  document.getElementById("faceQuestionView").style.display = "none";
   document.getElementById("resultView").style.display = "block";
 
   const faceScore = results.filter(r => r.faceCorrect).length;
@@ -293,9 +309,9 @@ function downloadResults() {
   const phraseAccuracy = ((phraseCorrect / results.length) * 100).toFixed(2) + '%';
   const overallAccuracy = ((totalCorrect / totalPossible) * 100).toFixed(2) + '%';
 
-  const csvHeader = "Trial,CorrectEmotion,SelectedEmotion,FaceCorrect,Phrase,CorrectPhrase,SelectedPhrase,PhraseCorrect,ReactionTime(ms)\n";
+  const csvHeader = "Trial,CorrectEmotion,SelectedEmotion,FaceCorrect,FaceReactionTime(ms),Phrase,CorrectPhrase,SelectedPhrase,PhraseCorrect,PhraseReactionTime(ms),MusicType\n";
   const csvBody = results.map(r =>
-    [r.trial, r.correctEmotion, r.selectedEmotion, r.faceCorrect, r.phrase, r.correctPhrase, r.selectedPhrase, r.phraseCorrect, r.reactionTimeMs].join(",")
+    [r.trial, r.correctEmotion, r.selectedEmotion, r.faceCorrect, r.faceReactionTimeMs || '', r.phrase, r.correctPhrase, r.selectedPhrase, r.phraseCorrect, r.phraseReactionTimeMs || '', r.musicType].join(",")
   ).join("\n");
 
   const summary = `\n\nFACE ACCURACY:,,${faceAccuracy}\nPHRASE ACCURACY:,,${phraseAccuracy}\nOVERALL ACCURACY:,,${overallAccuracy}`;
