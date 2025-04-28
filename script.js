@@ -222,7 +222,7 @@ function showPhraseView() {
   document.getElementById("phraseView").style.display = "block";
   selectedPhrase = getRandomFrom(phrases);
   document.getElementById("phraseText").textContent = selectedPhrase.text;
-  setTimeout(showQuestionView, 4000);
+  setTimeout(showQuestionView, 6000);
 }
 
 
