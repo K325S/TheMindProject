@@ -214,7 +214,7 @@ function showFaceView() {
   });
 
   correctPersonIndex = Math.floor(Math.random() * 3);
-  setTimeout(showPhraseView, 4000);
+  setTimeout(showPhraseView, 6000);
 }
 
 function showPhraseView() {
@@ -222,7 +222,7 @@ function showPhraseView() {
   document.getElementById("phraseView").style.display = "block";
   selectedPhrase = getRandomFrom(phrases);
   document.getElementById("phraseText").textContent = selectedPhrase.text;
-  setTimeout(showQuestionView, 6000);
+  setTimeout(showQuestionView, 4000);
 }
 
 
