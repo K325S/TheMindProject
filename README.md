@@ -1,6 +1,6 @@
 # TheMindProject
 
-Memory Experiment
+## Memory Experiment
 This is a simple web-based memory experiment designed to test participants' ability to remember facial emotions and phrase types under different background music conditions (instrumental vs. lyrical).
 
 ## Project Structure
