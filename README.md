@@ -21,7 +21,7 @@ style.css
 1. Clone or download the repository if you cannot access the link: https://k325s.github.io/TheMindProject/
 2. Make sure the /assets folder includes:
     - Faces images: categorized as happy, angry, and neutral.
-    - Music files: divided into instrumental and lyrical folders.
+    - Music files: divided into music and lyrical folders.
 3. Open index.html in a browser.
 4. Click "Start Experiment" to begin.
 
