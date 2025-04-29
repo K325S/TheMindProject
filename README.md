@@ -3,7 +3,8 @@
 Memory Experiment
 This is a simple web-based memory experiment designed to test participants' ability to remember facial emotions and phrase types under different background music conditions (instrumental vs. lyrical).
 
-# Project Structure
+## Project Structure
+```
 /assets
   /faces/
     happy1.jpg, angry1.jpg, neutral1.jpg, etc.
@@ -11,6 +12,12 @@ This is a simple web-based memory experiment designed to test participants' abil
     music1.mp3, music2.mp3, etc.
   /lyrical/
     lyrical1.mp3, lyrical2.mp3, etc.
+
+index.html
+script.js
+style.css
+```
+
 
 index.html
 script.js
