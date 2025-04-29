@@ -23,7 +23,7 @@ index.html
 script.js
 style.css
 
-# How to Run
+## How to Run
 1. Clone or download the repository if you cannot access the link: https://k325s.github.io/TheMindProject/
 2. Make sure the /assets folder includes:
     - Faces images: categorized as happy, angry, and neutral.
@@ -31,7 +31,7 @@ style.css
 3. Open index.html in a browser.
 4. Click "Start Experiment" to begin.
 
-# How the Experiment Works
+## How the Experiment Works
 1. Three faces are shown (happy, angry, neutral) for 6 seconds.
 2. A phrase appears for 4 seconds (statement, command, or question).
 3. Two questions are asked:
