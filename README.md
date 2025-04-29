@@ -17,12 +17,6 @@ index.html
 script.js
 style.css
 ```
-
-
-index.html
-script.js
-style.css
-
 ## How to Run
 1. Clone or download the repository if you cannot access the link: https://k325s.github.io/TheMindProject/
 2. Make sure the /assets folder includes:
