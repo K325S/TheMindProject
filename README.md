@@ -37,7 +37,7 @@ style.css
     - Reaction times
     - Background music type
 
-# Main Files
+## Main Files
 1. index.html: Structure of the experiment (views, buttons, layout).
 2. style.css: Basic styling (centered layout, button styles, image styles).
 3. script.js: Experiment logic (randomization, question flow, result tracking, CSV export).
